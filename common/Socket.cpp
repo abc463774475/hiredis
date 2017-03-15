@@ -577,3 +577,4 @@ void CSocketCtrl_base::connectedDo()
 {
 	m_isConnect = true;
 }
+
