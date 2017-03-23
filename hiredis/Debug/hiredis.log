@@ -1,4 +1,4 @@
-﻿生成启动时间为 2017/3/10 18:29:21。
+﻿生成启动时间为 2017/3/23 18:33:18。
      1>项目“F:\project\hiredis\hiredis\hiredis.vcxproj”在节点 2 上(Build 个目标)。
      1>Build:
          "C:\Program Files (x86)\Sysprogs\VisualGDB\VisualGDB.exe" /build "F:\project\hiredis\hiredis\hiredis.vcxproj" "/solution:F:\project\hiredis\hiredis.sln" "/config:Debug" "/platform:Win32"
@@ -10,4 +10,4 @@
 
 生成成功。
 
-已用时间 00:00:01.83
+已用时间 00:00:01.68

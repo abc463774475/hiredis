@@ -412,10 +412,13 @@ bool CSocketCtrl_base::tryRecv()
 	if ( isClosed()){
 		return false;
 	}
-	char sz[MAX_RECV_CACHESIZE];
-	char *sBuf = sz;
+	
 	while (1){
+		char sz[MAX_RECV_CACHESIZE];
+		char *sBuf = sz;
+
 		int iSize = recv(m_sockfd, sBuf, MAX_RECV_CACHESIZE, 0);
+		//NLog->info("recv len %d", iSize);
 		if (iSize == 0){
 			return false;
 		}
@@ -429,63 +432,66 @@ bool CSocketCtrl_base::tryRecv()
 			return true;
 		}
 		else{
-			uint32_t	stMsgSize;
-			char		sMsgBuf[MSGMAXSIZE];
-			int			iNeed;
-			if (m_recvMsg.m_nCurLength < sizeof (uint32_t)){
-				if (m_recvMsg.m_nCurLength + iSize < sizeof (uint32_t)){
-					m_recvMsg.CopyData(sBuf, iSize);
-					return true;
+			while (1)
+			{
+				uint32_t	stMsgSize;
+				char		sMsgBuf[MSGMAXSIZE];
+				int			iNeed;
+				if (m_recvMsg.m_nCurLength < sizeof(uint32_t)){
+					if (m_recvMsg.m_nCurLength + iSize < sizeof(uint32_t)){
+						m_recvMsg.CopyData(sBuf, iSize);
+						return true;
+					}
+					else if (m_recvMsg.m_nCurLength + iSize == sizeof(uint32_t)){
+						iNeed = sizeof(uint32_t) - m_recvMsg.m_nCurLength;
+						m_recvMsg.CopyData(sBuf, iNeed);
+						return true;
+					}
+					else{
+						iNeed = sizeof(uint32_t) - m_recvMsg.m_nCurLength;
+						m_recvMsg.CopyData(sBuf, iNeed);
+						iSize -= iNeed;
+						sBuf += iNeed;
+					}
 				}
-				else if (m_recvMsg.m_nCurLength + iSize == sizeof (uint32_t)){
-					iNeed = sizeof (uint32_t)-m_recvMsg.m_nCurLength;
-					m_recvMsg.CopyData(sBuf, iNeed);
-					return true;
-				}
-				else{
-					iNeed = sizeof (uint32_t)-m_recvMsg.m_nCurLength;
-					m_recvMsg.CopyData(sBuf, iNeed);
-					iSize -= iNeed;
-					sBuf += iNeed;
-				}
-			}
 
-			stMsgSize = *(uint32_t*)m_recvMsg.m_data;
+				stMsgSize = *(uint32_t*)m_recvMsg.m_data;
 
-			// 超长数据很少用得到   超过 100M 的数据都丢弃  怕的是服务器之间的同步 需要那么大的数据
-			if (stMsgSize >= MSGCANCUTMAXSIZE || stMsgSize < sizeof(Msg)){
-				m_recvMsg.Reset();
-				NLog->error("msghead erro %d", stMsgSize);
-				return false;
-			}
-
-			if (m_recvMsg.m_nCurLength + iSize >= stMsgSize){
-				// 完整包
-				iNeed = stMsgSize - m_recvMsg.m_nCurLength;
-				if (iNeed < 0){
-					NLog->error("如果这里都出错的话，我就无语了 %d", iNeed);
+				// 超长数据很少用得到   超过 100M 的数据都丢弃  怕的是服务器之间的同步 需要那么大的数据
+				if (stMsgSize >= MSGCANCUTMAXSIZE || stMsgSize < sizeof(Msg)){
+					m_recvMsg.Reset();
+					NLog->error("msghead erro %d", stMsgSize);
 					return false;
 				}
-				m_recvMsg.CopyData(sBuf, iNeed);
-				m_recvMsg.m_nMsgLength = stMsgSize;
-				Msg *pMsg = (Msg*)m_recvMsg.m_data;
 
-				pushRecvMsg();
-				m_recvMsg.Reset();
-				// 数据都拷贝完成了
-				if (iSize > iNeed){
-					sBuf += iNeed;
-					iSize -= iNeed;
-					continue;
+				if (m_recvMsg.m_nCurLength + iSize >= stMsgSize){
+					// 完整包
+					iNeed = stMsgSize - m_recvMsg.m_nCurLength;
+					if (iNeed < 0){
+						NLog->error("如果这里都出错的话，我就无语了 %d", iNeed);
+						return false;
+					}
+					m_recvMsg.CopyData(sBuf, iNeed);
+					m_recvMsg.m_nMsgLength = stMsgSize;
+					Msg *pMsg = (Msg*)m_recvMsg.m_data;
+
+					pushRecvMsg();
+					m_recvMsg.Reset();
+					// 数据都拷贝完成了
+					if (iSize > iNeed){
+						sBuf += iNeed;
+						iSize -= iNeed;
+						continue;
+					}
+					else{
+						break;;
+					}
 				}
 				else{
-					break;;
+					// 不完整包
+					m_recvMsg.CopyData(sBuf, iSize);
+					break;
 				}
-			}
-			else{
-				// 不完整包
-				m_recvMsg.CopyData(sBuf, iSize);
-				break;
 			}
 		}
 	}
@@ -497,6 +503,9 @@ void CSocketCtrl_base::pushRecvMsg(){
 	char* sBuf = new char[m_recvMsg.m_nMsgLength];
 	memcpy(sBuf,m_recvMsg.m_data,m_recvMsg.m_nMsgLength);
 	m_recvDeque.push_back((Msg*)sBuf);
+
+	/*Msg *pMsg = (Msg*)sBuf;
+	NLog->info("recvMsg  %d", pMsg->length);*/
 }
 
 bool CSocketCtrl_base::trySend(){
@@ -529,6 +538,7 @@ bool CSocketCtrl_base::trySend(){
 			return true;
 		}
 		int iSize = send(m_sockfd, m_sendBuff.m_sendBuff, m_sendBuff.m_sendBuffTotalSize, 0);
+		//NLog->info("send len %d", m_sendBuff.m_sendBuffTotalSize);
 		if ( iSize == 0){
 			return false;
 		}
@@ -568,9 +578,12 @@ void CSocketCtrl_base::processMsg()
 	{
 		Msg *pMsg = it;
 
+		NLog->info("procMsg %d",pMsg->length);
 		// proMsg
 		delete pMsg;
 	}
+
+	m_recvDeque.clear();
 }
 
 void CSocketCtrl_base::connectedDo()

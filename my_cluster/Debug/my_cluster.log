@@ -1,5 +1,5 @@
-﻿生成启动时间为 2017/3/10 18:29:22。
-     1>项目“F:\project\hiredis\my_cluster\my_cluster.vcxproj”在节点 2 上(Build 个目标)。
+﻿生成启动时间为 2017/3/23 18:33:20。
+     1>项目“F:\project\hiredis\my_cluster\my_cluster.vcxproj”在节点 3 上(Build 个目标)。
      1>Build:
          "C:\Program Files (x86)\Sysprogs\VisualGDB\VisualGDB.exe" /build "F:\project\hiredis\my_cluster\my_cluster.vcxproj" "/solution:F:\project\hiredis\hiredis.sln" "/config:Debug" "/platform:Win32"
          VisualGDB: No file changes detected. If you believe it's a mistake, please clean the project and build it again.
@@ -9,4 +9,4 @@
 
 生成成功。
 
-已用时间 00:00:01.19
+已用时间 00:00:01.59
