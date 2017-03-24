@@ -29,26 +29,25 @@ struct Msg;
 *        加密策略：对消息体不做处理，只对消息头加密，既是：
 *        加密过的Msg + 消息实体
 */
-enum
+enum  eMsgFlag
 {
-	MSG_FLAG_NONE = 0x00000000,
-	MSG_FLAG_COMPRESS = 0x00000001, /* 压缩 */
-	MSG_FLAG_ENCRYPT = 0x00000002, /* 加密 */
-
-	MSG_FLAG_ALL = 0xffffffff,
+	eMsgFlag_Non			= 0x00000001,
+	eMsgFlag_Intergrated	= 0x00000002,
+	eMsgFlag_Father			= 0x00000004,
+	eMsgFlag_Child			= 0x00000008,
 };
 
 /**
-* \brief in fact, this is msg header.
-*        18 bytes in size.
-*/
+ * \brief in fact, this is msg header.
+ *        18 bytes in size.
+ */
 struct Msg
 {
 	Msg()
 	: length(0)
 	, stID(-1)
 	, dwType(0)
-	, flag(MSG_FLAG_NONE)
+	, flag(eMsgFlag_Non)
 	, origLen(0)
 	{}
 

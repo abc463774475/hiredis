@@ -11,6 +11,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include "socketMgr.h"
+#include <algorithm>
 
 CSocketCtrl_base::CSocketCtrl_base() : m_sockfd(-1)
 {
@@ -501,11 +502,53 @@ bool CSocketCtrl_base::tryRecv()
 
 void CSocketCtrl_base::pushRecvMsg(){
 	char* sBuf = new char[m_recvMsg.m_nMsgLength];
-	memcpy(sBuf,m_recvMsg.m_data,m_recvMsg.m_nMsgLength);
-	m_recvDeque.push_back((Msg*)sBuf);
+	memmove(sBuf,m_recvMsg.m_data,m_recvMsg.m_nMsgLength);
+	
+	Msg*pMsg = (Msg*)sBuf;
+	//NLog->info("push msg is integrate  %d", pMsg->flag);
+	if (pMsg->flag == eMsgFlag_Intergrated){
+		m_recvDeque.push_back((Msg*)sBuf);
+	}
+	else{
+		pushRecvTempMsg(pMsg);
+	}
+}
 
-	/*Msg *pMsg = (Msg*)sBuf;
-	NLog->info("recvMsg  %d", pMsg->length);*/
+void CSocketCtrl_base::pushRecvTempMsg(Msg *pMsg){
+	m_recvTempDeque.push_back(pMsg);
+	// check the integrate  lamda expression
+	auto lenFun = [](const MSGDEQUE &mTemp){
+		int len = 0;
+		for (auto it : mTemp){
+			len += it->length;
+		}
+		return len;
+	};
+	int totalLen = lenFun(m_recvTempDeque) - sizeof(Msg)*(m_recvTempDeque.size()-1);
+	
+	if (totalLen == pMsg->origLen){
+		char *sBuf = new char[pMsg->origLen];
+		int startLen = 0;
+		for (auto it = m_recvTempDeque.begin(); it != m_recvTempDeque.end(); ++it){
+			Msg *pTemp = *it;
+			if (it == m_recvTempDeque.begin()){
+				memmove(sBuf+startLen, (char*)pTemp, pTemp->length);
+				startLen += pTemp->length;
+			}
+			else {
+				memmove(sBuf + startLen, (char*)pTemp + sizeof(Msg), pTemp->length - sizeof(Msg));
+				startLen += pTemp->length - sizeof(Msg);
+			}
+		}
+		
+		Msg *pNewMsg = (Msg*)sBuf;
+		pNewMsg->length = pMsg->origLen;
+
+		m_recvDeque.push_back(pNewMsg);
+
+		for_each(m_recvTempDeque.begin(), m_recvTempDeque.end(), [](Msg*pMsg){delete pMsg; });
+		m_recvTempDeque.clear();
+	}
 }
 
 bool CSocketCtrl_base::trySend(){
@@ -521,8 +564,7 @@ bool CSocketCtrl_base::trySend(){
 			}
 			Msg *pMsg = m_sendDeque.front();
 			if ( pMsg->length + m_sendBuff.m_sendBuffTotalSize < const_iSendbufSize){
-				
-				memcpy(m_sendBuff.m_sendBuff + m_sendBuff.m_sendBuffTotalSize, 
+				memmove(m_sendBuff.m_sendBuff + m_sendBuff.m_sendBuffTotalSize, 
 					(char*)pMsg, pMsg->length);
 				m_sendBuff.m_sendBuffTotalSize += pMsg->length;
 
@@ -539,6 +581,9 @@ bool CSocketCtrl_base::trySend(){
 		}
 		int iSize = send(m_sockfd, m_sendBuff.m_sendBuff, m_sendBuff.m_sendBuffTotalSize, 0);
 		//NLog->info("send len %d", m_sendBuff.m_sendBuffTotalSize);
+		if (iSize != m_sendBuff.m_sendBuffTotalSize){
+			//NLog->info("sendMsg len %d  cannot right  needSend %d  realSend %d ",((Msg*)m_sendBuff.m_sendBuff)->length, m_sendBuff.m_sendBuffTotalSize, iSize);
+		}
 		if ( iSize == 0){
 			return false;
 		}
@@ -560,24 +605,115 @@ bool CSocketCtrl_base::trySend(){
 	return true;
 }
 
-void CSocketCtrl_base::sendMsg(Msg *pMsg)
-{
-	if ( isClosed())
-	{
+//void CSocketCtrl_base::sendMsg(Msg *pMsg)
+//{
+//	if ( isClosed())
+//	{
+//		return;
+//	}
+//
+//	// need deal with the very long msg ok just individe msg
+//
+//	char *sBuf = new char[pMsg->length];
+//	memcpy(sBuf, (char*)pMsg, pMsg->length);
+//
+//	m_sendDeque.push_back((Msg*)sBuf);
+//}
+//
+//void CSocketCtrl_base::sendMsg(Msg *pMsg){
+//	if ( isClosed()){
+//		return;
+//	}
+//
+//	int curLen = 0;
+//	int totalLen = pMsg->length;
+//	while (1){
+//		// just avoid border problem
+//		int needLen = const_iSendbufSize - 200;
+//		int leftLen = totalLen - curLen;
+//		if (leftLen > needLen){
+//			char *sBuf = new char[needLen];
+//			if (curLen == 0){
+//				memcpy(sBuf, (char*)pMsg+curLen, needLen);
+//			}
+//			else{
+//				memcpy(sBuf + sizeof(Msg), (char*)pMsg + curLen, needLen);
+//			}
+//
+//			Msg *pTemp = (Msg*)sBuf;
+//			pTemp->length = needLen;
+//			pTemp->flag |= (curLen == 0) ? eMsgFlag_Father : eMsgFlag_Child;
+//			pTemp->origLen = totalLen;
+//
+//			curLen += needLen;
+//			m_sendDeque.push_back(pTemp);
+//		}
+//		else {
+//			char *sBuf = new char[leftLen];
+//
+//			char *sBuf = new char[needLen];
+//			if (curLen == 0){
+//				memcpy(sBuf, (char*)pMsg + curLen, needLen);
+//			}
+//			else{
+//				memcpy(sBuf + sizeof(Msg), (char*)pMsg + curLen, needLen);
+//			}
+//
+//			Msg *pTemp = (Msg*)sBuf;
+//			pTemp->length = leftLen;
+//			pTemp->flag |= (curLen == 0) ? eMsgFlag_Intergrated : eMsgFlag_Child;
+//			pTemp->origLen = totalLen;
+//
+//			curLen += needLen;
+//			m_sendDeque.push_back(pTemp);
+//		}
+//	}
+//}
+
+void CSocketCtrl_base::sendMsg(Msg *pMsg){
+	if (isClosed()){
 		return;
 	}
-	char *sBuf = new char[pMsg->length];
-	memcpy(sBuf, (char*)pMsg, pMsg->length);
-	
-	m_sendDeque.push_back((Msg*)sBuf);
+
+	int curLen = 0;
+	int totalLen = pMsg->length;
+	while (curLen < totalLen){
+		// just avoid border problem
+		int needLen = const_iSendbufSize - 200;
+		int leftLen = totalLen - curLen;
+		int curMsgLen = needLen > leftLen ? leftLen : needLen;
+		int buffLen = curMsgLen;
+		if ( curLen != 0){
+			buffLen += sizeof(Msg);
+		}
+		char *sBuf = new char[buffLen];
+		if (curLen == 0){
+			memmove(sBuf, (char*)pMsg + curLen, curMsgLen);
+		}
+		else{
+			memmove(sBuf + sizeof(Msg), (char*)pMsg + curLen, curMsgLen);
+		}
+		Msg *pTemp = (Msg*)sBuf;
+		pTemp->length = buffLen;
+		pTemp->origLen = totalLen;
+
+		// need care 
+		if (curLen == 0){
+			pTemp->flag = (buffLen == totalLen) ? eMsgFlag_Intergrated : eMsgFlag_Father;
+		}
+		else{
+			pTemp->flag = eMsgFlag_Child;
+		}
+
+		curLen += curMsgLen;
+		m_sendDeque.push_back(pTemp);
+	}
 }
 
-void CSocketCtrl_base::processMsg()
-{
-	for ( auto it : m_recvDeque)
-	{
+void CSocketCtrl_base::processMsg(){
+	for ( auto it : m_recvDeque){
 		Msg *pMsg = it;
-		NLog->info("procMsg %d  stdId %d",pMsg->length, pMsg->flag);
+		NLog->info("procMsgLen %d  dwType %d", pMsg->length, pMsg->dwType);
 		sendMsg(pMsg);
 		// proMsg
 		delete pMsg;
@@ -586,8 +722,7 @@ void CSocketCtrl_base::processMsg()
 	m_recvDeque.clear();
 }
 
-void CSocketCtrl_base::connectedDo()
-{
+void CSocketCtrl_base::connectedDo(){
 	m_isConnect = true;
 }
 

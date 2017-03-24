@@ -311,7 +311,7 @@ public:
 		{
 			if(_rpos  + len > size())
 				throw ByteBufferException(false, _rpos, len, size(),_packType);
-			memcpy(dest, &_storage[_rpos], len);
+			memmove(dest, &_storage[_rpos], len);
 			_rpos += len;
 		}
 
@@ -368,7 +368,7 @@ public:
 				return;
 			if (_storage.size() < _wpos + cnt)
 				_storage.resize(_wpos + cnt);
-			memcpy(&_storage[_wpos], src, cnt);
+			memmove(&_storage[_wpos], src, cnt);
 			_wpos += cnt;
 		}
 
@@ -384,7 +384,7 @@ public:
 		{
 			if(pos + cnt > size())
 				throw ByteBufferException(true, pos, cnt, size(),_packType);
-			memcpy(&_storage[pos], src, cnt);
+			memmove(&_storage[pos], src, cnt);
 		}
 
 	protected:

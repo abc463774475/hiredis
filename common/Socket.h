@@ -55,8 +55,10 @@ public:
 	
 	void			pushRecvMsg();
 	void			sendMsg(Msg *pMsg);
-
 	virtual	void	connectedDo();
+	
+	void			pushRecvTempMsg(Msg *pMsg);
+
 public:
 	SOCKET			m_sockfd;
     sockaddr_in     m_addr;
@@ -74,4 +76,5 @@ public:
 
 	MSGDEQUE		m_recvDeque;
 	MSGDEQUE		m_sendDeque;
+	MSGDEQUE		m_recvTempDeque;
 };

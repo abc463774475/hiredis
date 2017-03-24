@@ -23,7 +23,7 @@ struct stRecvBuff
 {
 public:
 	uint32_t	m_nMsgLength;						// 每条消息的需要的长度
-	uint32_t	m_nCurLength;							// 当前长度
+	uint32_t	m_nCurLength;						// 当前长度
 	char		m_data[MSGCANCUTMAXSIZE];			// 最大长度是这个
 
 	stRecvBuff()
@@ -39,7 +39,7 @@ public:
 
 	void CopyData(const char *pData, uint32_t length)
 	{
-		memcpy(m_data + m_nCurLength, pData, length);
+		memmove(m_data + m_nCurLength, pData, length);
 		m_nCurLength += length;
 	}
 
@@ -58,18 +58,14 @@ struct	stSendBuff
 	}
 	void			Reset()
 	{
-		//CSALocker _lock (m_lock) ;
 		memset(m_sendBuff, 0, sizeof (m_sendBuff));
 		m_sendBuffTotalSize = 0;
-		//m_sendBuffCurSize = 0;
 	}
 
 	void			Copy(int _isize)
 	{
-// 		memcpy(m_sendBuff, m_sendBuff + m_sendBuffCurSize, m_sendBuffTotalSize - _isize);
-// 		m_sendBuffTotalSize -= m_sendBuffCurSize;
-// 		m_sendBuffCurSize = 0;
-		memcpy(m_sendBuff, m_sendBuff + _isize, m_sendBuffTotalSize - _isize);
+		//memcpy(m_sendBuff, m_sendBuff + _isize, m_sendBuffTotalSize - _isize);
+		memmove(m_sendBuff, m_sendBuff + _isize, m_sendBuffTotalSize - _isize);
 		m_sendBuffTotalSize -= _isize;
 	}
 };
