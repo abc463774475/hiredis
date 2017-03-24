@@ -484,7 +484,7 @@ bool CSocketCtrl_base::tryRecv()
 						continue;
 					}
 					else{
-						break;;
+						break;
 					}
 				}
 				else{
@@ -577,8 +577,8 @@ void CSocketCtrl_base::processMsg()
 	for ( auto it : m_recvDeque)
 	{
 		Msg *pMsg = it;
-
-		NLog->info("procMsg %d",pMsg->length);
+		NLog->info("procMsg %d  stdId %d",pMsg->length, pMsg->flag);
+		sendMsg(pMsg);
 		// proMsg
 		delete pMsg;
 	}

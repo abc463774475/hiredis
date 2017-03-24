@@ -10,5 +10,9 @@ public:
 	~Socket_test() ;
 
 	virtual void	connectedDo();
+	virtual void	processMsg();
+	virtual void	run();
+
+	map<int, Msg*>	m_totalMsg;
 };
 

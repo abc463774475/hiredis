@@ -46,14 +46,13 @@ public:
     string          GetRemoteIp ();
     uint16_t        GetRemotePort ();
 	
-	void			run();
+	virtual void	run();
 	void			accept_node();
 	
 	bool			tryRecv();
-	void			processMsg();
+	virtual void	processMsg();
 	bool			trySend();
 	
-
 	void			pushRecvMsg();
 	void			sendMsg(Msg *pMsg);
 

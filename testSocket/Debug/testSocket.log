@@ -1,13 +1,12 @@
-﻿生成启动时间为 2017/3/23 18:33:19。
-     1>项目“F:\project\hiredis\testSocket\testSocket.vcxproj”在节点 4 上(Build 个目标)。
+﻿生成启动时间为 2017/3/24 11:09:17。
+     1>项目“F:\project\hiredis\testSocket\testSocket.vcxproj”在节点 5 上(Build 个目标)。
      1>Build:
          "C:\Program Files (x86)\Sysprogs\VisualGDB\VisualGDB.exe" /build "F:\project\hiredis\testSocket\testSocket.vcxproj" "/solution:F:\project\hiredis\hiredis.sln" "/config:Debug" "/platform:Win32"
-         VisualGDB: Sending 1 updated source file to build machine...
+         VisualGDB: No file changes detected. If you believe it's a mistake, please clean the project and build it again.
          VisualGDB: Run "make CONFIG=Debug" in directory "/tmp/VisualGDB/f/project/hiredis/testSocket" on hxd@192.168.23.254 (SSH)
-         g++ -ggdb -ffunction-sections -O0 -std=c++11 -pthread -I../common -I../common/lua/include -DDEBUG=1  -c socket_test.cpp -o Debug/socket_test.o -MD -MF Debug/socket_test.dep
-         g++ -o Debug/testSocket -Wl,-gc-sections -std=c++11 -pthread   -Wl,--start-group Debug/socket_test.o Debug/testSocket.o -lpthread ../common/Debug/common.a -Wl,--rpath='$ORIGIN' -Wl,--rpath='$ORIGIN/../../common/Debug/' ../common/Debug/common.a -Wl,--end-group
+         make: Nothing to be done for `all'.
      1>已完成生成项目“F:\project\hiredis\testSocket\testSocket.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:03.72
+已用时间 00:00:01.37
