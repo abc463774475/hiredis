@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{52443192-ddca-4668-b67e-bfd76b79abcb}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{3c0ed9a2-47cf-4290-9ed2-86361f610bf5}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{a781cba7-7671-4e82-95a0-c6174d0e5a8e}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Make files">
+      <UniqueIdentifier>{747e0c8a-a063-42b0-b12d-fe61cb74c070}</UniqueIdentifier>
+      <Extensions>*.mak</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{5afbebc3-41f9-429a-addc-ee7cde980ba4}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+    <Filter Include="scriptMgr">
+      <UniqueIdentifier>{37f6e714-35dc-4af4-b251-7464d6ed6dbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="other">
+      <UniqueIdentifier>{a24ca536-0d90-4275-84db-05267add5225}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\network">
+      <UniqueIdentifier>{c3af52f9-46e5-417f-b3df-fff2274aad8c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="my_cluster.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="redisInstance_slave.cpp">
+      <Filter>scriptMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="redisInstance_base.cpp">
+      <Filter>scriptMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="instance_cli.cpp">
+      <Filter>scriptMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="instancMgr_slaveAndMaster.cpp">
+      <Filter>scriptMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="instancMgr_base.cpp">
+      <Filter>scriptMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="instancMgr_cli.cpp">
+      <Filter>scriptMgr</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
+    <None Include="debug.mak">
+      <Filter>Make files</Filter>
+    </None>
+    <None Include="my_cluster-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="release.mak">
+      <Filter>Make files</Filter>
+    </None>
+    <None Include="my_cluster-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="warning.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="redisInstance_slave.h">
+      <Filter>scriptMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="redisInstance_base.h">
+      <Filter>scriptMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="my_head.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="instance_cli.h">
+      <Filter>scriptMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="instancMgr_slaveAndMaster.h">
+      <Filter>scriptMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="instancMgr_base.h">
+      <Filter>scriptMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="instancMgr_cli.h">
+      <Filter>scriptMgr</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{bfb90611-24a0-487d-88ca-d53b8b1be0dd}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{3c127868-1e32-4357-b7a7-1be8541c32bb}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{a32fb3b2-4334-441e-be35-450b4bf1cd6a}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Make files">
+      <UniqueIdentifier>{d54b4dd0-f97f-4e71-b2f1-58c4382b205d}</UniqueIdentifier>
+      <Extensions>*.mak</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{eff4c621-5394-4c8d-96ba-3b46837c88c0}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+    <Filter Include="Header files\lua">
+      <UniqueIdentifier>{fc640bbe-6efe-4584-8029-eef02b91263d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
+    <None Include="debug.mak">
+      <Filter>Make files</Filter>
+    </None>
+    <None Include="common-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="release.mak">
+      <Filter>Make files</Filter>
+    </None>
+    <None Include="common-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="byteBuffer.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="hrNetwork.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="msgbase.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Socket.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="socketMgr.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="tool.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="warning.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkPacket.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="DateTime.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\include\lauxlib.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\include\lua.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\include\lua.hpp">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\include\luaconf.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\include\lualib.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\lapi.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\lauxlib.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\lcode.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\ldebug.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\ldo.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\lfunc.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\lgc.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\llex.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\llimits.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\lmem.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\lobject.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\lopcodes.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\lparser.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\lstate.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\lstring.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\ltable.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\ltm.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\lua.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\luaconf.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\lualib.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\lundump.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\lvm.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+    <ClInclude Include="lua\src\lzio.h">
+      <Filter>Header files\lua</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Random.cpp">
+      <Filter>Header files</Filter>
+    </ClCompile>
+    <ClCompile Include="Socket.cpp">
+      <Filter>Header files</Filter>
+    </ClCompile>
+    <ClCompile Include="socketMgr.cpp">
+      <Filter>Header files</Filter>
+    </ClCompile>
+    <ClCompile Include="tool.cpp">
+      <Filter>Header files</Filter>
+    </ClCompile>
+    <ClCompile Include="DateTime.cpp">
+      <Filter>Header files</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Header files</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\lapi.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\lauxlib.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\lbaselib.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\lcode.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\ldblib.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\ldebug.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\ldo.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\ldump.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\lfunc.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\lgc.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\linit.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\liolib.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\llex.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\lmathlib.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\lmem.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\loadlib.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\lobject.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\lopcodes.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\loslib.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\lparser.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\lstate.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\lstring.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\lstrlib.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\ltable.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\ltablib.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\ltm.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\lua.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\luac.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\lundump.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\lvm.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\lzio.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="lua\src\print.c">
+      <Filter>Header files\lua</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

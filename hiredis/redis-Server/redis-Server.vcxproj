@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7CE65733-8325-4793-959A-6162AF433876}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeIncludeSearchPath>$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include\c++\4.8;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include\x86_64-linux-gnu\c++\4.8;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include\c++\4.8\backward;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0001\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0003\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0002\include-fixed;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include\x86_64-linux-gnu;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include;..\hiredis\3.0\deps\lua\src;..\hiredis\3.0\deps\hiredis;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(ProjectDir)\gcc_Debug.h;$(VISUALGDB_DIR)\gcc_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
+    <NMakeOutput>$(ProjectDir)redis-Server-Debug.vgdbsettings</NMakeOutput>
+    <IncludePath />
+    <ReferencePath />
+    <LibraryPath />
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Debug;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeIncludeSearchPath>$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include\c++\4.8;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include\x86_64-linux-gnu\c++\4.8;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include\c++\4.8\backward;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0001\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0003\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0002\include-fixed;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include\x86_64-linux-gnu;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(ProjectDir)\gcc_Release.h;$(VISUALGDB_DIR)\gcc_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Release;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
+    <NMakeOutput>$(ProjectDir)redis-Server-Release.vgdbsettings</NMakeOutput>
+    <IncludePath />
+    <ReferencePath />
+    <LibraryPath />
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\hiredis\3.0\src\adlist.c" />
+    <ClCompile Include="..\hiredis\3.0\src\ae.c" />
+    <ClCompile Include="..\hiredis\3.0\src\anet.c" />
+    <ClCompile Include="..\hiredis\3.0\src\aof.c" />
+    <ClCompile Include="..\hiredis\3.0\src\bio.c" />
+    <ClCompile Include="..\hiredis\3.0\src\bitops.c" />
+    <ClCompile Include="..\hiredis\3.0\src\blocked.c" />
+    <ClCompile Include="..\hiredis\3.0\src\cluster.c" />
+    <ClCompile Include="..\hiredis\3.0\src\config.c" />
+    <ClCompile Include="..\hiredis\3.0\src\crc16.c" />
+    <ClCompile Include="..\hiredis\3.0\src\crc64.c" />
+    <ClCompile Include="..\hiredis\3.0\src\db.c" />
+    <ClCompile Include="..\hiredis\3.0\src\debug.c" />
+    <ClCompile Include="..\hiredis\3.0\src\dict.c" />
+    <ClCompile Include="..\hiredis\3.0\src\endianconv.c" />
+    <ClCompile Include="..\hiredis\3.0\src\hyperloglog.c" />
+    <ClCompile Include="..\hiredis\3.0\src\intset.c" />
+    <ClCompile Include="..\hiredis\3.0\src\latency.c" />
+    <ClCompile Include="..\hiredis\3.0\src\lzf_c.c" />
+    <ClCompile Include="..\hiredis\3.0\src\lzf_d.c" />
+    <ClCompile Include="..\hiredis\3.0\src\memtest.c" />
+    <ClCompile Include="..\hiredis\3.0\src\multi.c" />
+    <ClCompile Include="..\hiredis\3.0\src\networking.c" />
+    <ClCompile Include="..\hiredis\3.0\src\notify.c" />
+    <ClCompile Include="..\hiredis\3.0\src\object.c" />
+    <ClCompile Include="..\hiredis\3.0\src\pqsort.c" />
+    <ClCompile Include="..\hiredis\3.0\src\pubsub.c" />
+    <ClCompile Include="..\hiredis\3.0\src\rand.c" />
+    <ClCompile Include="..\hiredis\3.0\src\rdb.c" />
+    <ClCompile Include="..\hiredis\3.0\src\redis.c" />
+    <ClCompile Include="..\hiredis\3.0\src\release.c" />
+    <ClCompile Include="..\hiredis\3.0\src\replication.c" />
+    <ClCompile Include="..\hiredis\3.0\src\rio.c" />
+    <ClCompile Include="..\hiredis\3.0\src\scripting.c" />
+    <ClCompile Include="..\hiredis\3.0\src\sds.c" />
+    <ClCompile Include="..\hiredis\3.0\src\sentinel.c" />
+    <ClCompile Include="..\hiredis\3.0\src\setproctitle.c" />
+    <ClCompile Include="..\hiredis\3.0\src\sha1.c" />
+    <ClCompile Include="..\hiredis\3.0\src\slowlog.c" />
+    <ClCompile Include="..\hiredis\3.0\src\sort.c" />
+    <ClCompile Include="..\hiredis\3.0\src\sparkline.c" />
+    <ClCompile Include="..\hiredis\3.0\src\syncio.c" />
+    <ClCompile Include="..\hiredis\3.0\src\t_hash.c" />
+    <ClCompile Include="..\hiredis\3.0\src\t_list.c" />
+    <ClCompile Include="..\hiredis\3.0\src\t_set.c" />
+    <ClCompile Include="..\hiredis\3.0\src\t_string.c" />
+    <ClCompile Include="..\hiredis\3.0\src\t_zset.c" />
+    <ClCompile Include="..\hiredis\3.0\src\util.c" />
+    <ClCompile Include="..\hiredis\3.0\src\ziplist.c" />
+    <ClCompile Include="..\hiredis\3.0\src\zipmap.c" />
+    <ClCompile Include="..\hiredis\3.0\src\zmalloc.c" />
+    <ClCompile Include="redis-Server.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\hiredis\3.0\sentinel.conf" />
+    <None Include="..\hiredis\3.0\src\.gitignore" />
+    <None Include="..\hiredis\3.0\src\.make-prerequisites" />
+    <None Include="..\hiredis\3.0\src\.make-settings" />
+    <None Include="..\hiredis\3.0\src\Makefile" />
+    <None Include="..\hiredis\3.0\src\Makefile.dep" />
+    <None Include="..\hiredis\3.0\src\mkreleasehdr.sh" />
+    <None Include="debug.mak" />
+    <None Include="Makefile" />
+    <None Include="redis-Server-Debug.vgdbsettings" />
+    <None Include="redis-Server-Release.vgdbsettings" />
+    <None Include="release.mak" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\hiredis\3.0\src\adlist.h" />
+    <ClInclude Include="..\hiredis\3.0\src\ae.h" />
+    <ClInclude Include="..\hiredis\3.0\src\anet.h" />
+    <ClInclude Include="..\hiredis\3.0\src\asciilogo.h" />
+    <ClInclude Include="..\hiredis\3.0\src\bio.h" />
+    <ClInclude Include="..\hiredis\3.0\src\cluster.h" />
+    <ClInclude Include="..\hiredis\3.0\src\config.h" />
+    <ClInclude Include="..\hiredis\3.0\src\crc64.h" />
+    <ClInclude Include="..\hiredis\3.0\src\dict.h" />
+    <ClInclude Include="..\hiredis\3.0\src\endianconv.h" />
+    <ClInclude Include="..\hiredis\3.0\src\fmacros.h" />
+    <ClInclude Include="..\hiredis\3.0\src\help.h" />
+    <ClInclude Include="..\hiredis\3.0\src\intset.h" />
+    <ClInclude Include="..\hiredis\3.0\src\latency.h" />
+    <ClInclude Include="..\hiredis\3.0\src\lzf.h" />
+    <ClInclude Include="..\hiredis\3.0\src\lzfP.h" />
+    <ClInclude Include="..\hiredis\3.0\src\pqsort.h" />
+    <ClInclude Include="..\hiredis\3.0\src\rand.h" />
+    <ClInclude Include="..\hiredis\3.0\src\rdb.h" />
+    <ClInclude Include="..\hiredis\3.0\src\redis.h" />
+    <ClInclude Include="..\hiredis\3.0\src\redisassert.h" />
+    <ClInclude Include="..\hiredis\3.0\src\release.h" />
+    <ClInclude Include="..\hiredis\3.0\src\rio.h" />
+    <ClInclude Include="..\hiredis\3.0\src\sds.h" />
+    <ClInclude Include="..\hiredis\3.0\src\sha1.h" />
+    <ClInclude Include="..\hiredis\3.0\src\slowlog.h" />
+    <ClInclude Include="..\hiredis\3.0\src\solarisfixes.h" />
+    <ClInclude Include="..\hiredis\3.0\src\sparkline.h" />
+    <ClInclude Include="..\hiredis\3.0\src\testhelp.h" />
+    <ClInclude Include="..\hiredis\3.0\src\util.h" />
+    <ClInclude Include="..\hiredis\3.0\src\version.h" />
+    <ClInclude Include="..\hiredis\3.0\src\ziplist.h" />
+    <ClInclude Include="..\hiredis\3.0\src\zipmap.h" />
+    <ClInclude Include="..\hiredis\3.0\src\zmalloc.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
