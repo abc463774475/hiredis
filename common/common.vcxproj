@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{ABF31058-AD0E-4064-981B-D4566B33F4F6}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeIncludeSearchPath>$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include\c++\4.8;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include\x86_64-linux-gnu\c++\4.8;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include\c++\4.8\backward;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0001\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0003\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0002\include-fixed;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include\x86_64-linux-gnu;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include;.\lua\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(ProjectDir)\gcc_Debug.h;$(VISUALGDB_DIR)\gcc_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
+    <NMakeOutput>$(ProjectDir)common-Debug.vgdbsettings</NMakeOutput>
+    <IncludePath />
+    <ReferencePath />
+    <LibraryPath />
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Debug;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeIncludeSearchPath>$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include\c++\4.8;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include\x86_64-linux-gnu\c++\4.8;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include\c++\4.8\backward;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0001\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0003\include;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0002\include-fixed;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include\x86_64-linux-gnu;$(LOCALAPPDATA)\VisualGDB\RemoteSourceCache\192.168.23.254\0000\include;$(NMakeIncludeSearchPath)</NMakeIncludeSearchPath>
+    <NMakeForcedIncludes>$(ProjectDir)\gcc_Release.h;$(VISUALGDB_DIR)\gcc_compat.h;$(NMakeForcedIncludes)</NMakeForcedIncludes>
+    <NMakeBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /build "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeBuildCommandLine>
+    <NMakeCleanCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /clean "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeCleanCommandLine>
+    <NMakeReBuildCommandLine>"$(VISUALGDB_DIR)\VisualGDB.exe" /rebuild "$(ProjectPath)" "/solution:$(SolutionPath)" "/config:$(Configuration)" "/platform:$(Platform)"</NMakeReBuildCommandLine>
+    <NMakeOutput>$(ProjectDir)common-Release.vgdbsettings</NMakeOutput>
+    <IncludePath />
+    <ReferencePath />
+    <LibraryPath />
+    <NMakePreprocessorDefinitions>__VisualGDB_CFG_Release;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="common-Debug.vgdbsettings" />
+    <None Include="common-Release.vgdbsettings" />
+    <None Include="debug.mak" />
+    <None Include="Makefile" />
+    <None Include="release.mak" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="byteBuffer.h" />
+    <ClInclude Include="DateTime.h" />
+    <ClInclude Include="hrNetwork.h" />
+    <ClInclude Include="Logger.h" />
+    <ClInclude Include="lua\include\lauxlib.h" />
+    <ClInclude Include="lua\include\lua.h" />
+    <ClInclude Include="lua\include\lua.hpp" />
+    <ClInclude Include="lua\include\luaconf.h" />
+    <ClInclude Include="lua\include\lualib.h" />
+    <ClInclude Include="lua\src\lapi.h" />
+    <ClInclude Include="lua\src\lauxlib.h" />
+    <ClInclude Include="lua\src\lcode.h" />
+    <ClInclude Include="lua\src\ldebug.h" />
+    <ClInclude Include="lua\src\ldo.h" />
+    <ClInclude Include="lua\src\lfunc.h" />
+    <ClInclude Include="lua\src\lgc.h" />
+    <ClInclude Include="lua\src\llex.h" />
+    <ClInclude Include="lua\src\llimits.h" />
+    <ClInclude Include="lua\src\lmem.h" />
+    <ClInclude Include="lua\src\lobject.h" />
+    <ClInclude Include="lua\src\lopcodes.h" />
+    <ClInclude Include="lua\src\lparser.h" />
+    <ClInclude Include="lua\src\lstate.h" />
+    <ClInclude Include="lua\src\lstring.h" />
+    <ClInclude Include="lua\src\ltable.h" />
+    <ClInclude Include="lua\src\ltm.h" />
+    <ClInclude Include="lua\src\lua.h" />
+    <ClInclude Include="lua\src\luaconf.h" />
+    <ClInclude Include="lua\src\lualib.h" />
+    <ClInclude Include="lua\src\lundump.h" />
+    <ClInclude Include="lua\src\lvm.h" />
+    <ClInclude Include="lua\src\lzio.h" />
+    <ClInclude Include="msgbase.h" />
+    <ClInclude Include="Random.h" />
+    <ClInclude Include="Socket.h" />
+    <ClInclude Include="socketMgr.h" />
+    <ClInclude Include="tool.h" />
+    <ClInclude Include="warning.h" />
+    <ClInclude Include="WorkPacket.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="DateTime.cpp" />
+    <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="lua\src\lapi.c" />
+    <ClCompile Include="lua\src\lauxlib.c" />
+    <ClCompile Include="lua\src\lbaselib.c" />
+    <ClCompile Include="lua\src\lcode.c" />
+    <ClCompile Include="lua\src\ldblib.c" />
+    <ClCompile Include="lua\src\ldebug.c" />
+    <ClCompile Include="lua\src\ldo.c" />
+    <ClCompile Include="lua\src\ldump.c" />
+    <ClCompile Include="lua\src\lfunc.c" />
+    <ClCompile Include="lua\src\lgc.c" />
+    <ClCompile Include="lua\src\linit.c" />
+    <ClCompile Include="lua\src\liolib.c" />
+    <ClCompile Include="lua\src\llex.c" />
+    <ClCompile Include="lua\src\lmathlib.c" />
+    <ClCompile Include="lua\src\lmem.c" />
+    <ClCompile Include="lua\src\loadlib.c" />
+    <ClCompile Include="lua\src\lobject.c" />
+    <ClCompile Include="lua\src\lopcodes.c" />
+    <ClCompile Include="lua\src\loslib.c" />
+    <ClCompile Include="lua\src\lparser.c" />
+    <ClCompile Include="lua\src\lstate.c" />
+    <ClCompile Include="lua\src\lstring.c" />
+    <ClCompile Include="lua\src\lstrlib.c" />
+    <ClCompile Include="lua\src\ltable.c" />
+    <ClCompile Include="lua\src\ltablib.c" />
+    <ClCompile Include="lua\src\ltm.c" />
+    <ClCompile Include="lua\src\lua.c" />
+    <ClCompile Include="lua\src\luac.c" />
+    <ClCompile Include="lua\src\lundump.c" />
+    <ClCompile Include="lua\src\lvm.c" />
+    <ClCompile Include="lua\src\lzio.c" />
+    <ClCompile Include="lua\src\print.c" />
+    <ClCompile Include="Random.cpp" />
+    <ClCompile Include="Socket.cpp" />
+    <ClCompile Include="socketMgr.cpp" />
+    <ClCompile Include="tool.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
