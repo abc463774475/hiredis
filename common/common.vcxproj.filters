@@ -158,6 +158,9 @@
     <ClInclude Include="lua\src\lzio.h">
       <Filter>Header files\lua</Filter>
     </ClInclude>
+    <ClInclude Include="MySQL\MySqlWrapper.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Random.cpp">
@@ -273,6 +276,9 @@
     </ClCompile>
     <ClCompile Include="lua\src\print.c">
       <Filter>Header files\lua</Filter>
+    </ClCompile>
+    <ClCompile Include="MySQL\MySqlWrapper.cpp">
+      <Filter>Header files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

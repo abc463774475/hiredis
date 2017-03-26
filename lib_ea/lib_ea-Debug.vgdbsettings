@@ -7,14 +7,14 @@
       <PathStyle>RemoteUnix</PathStyle>
     </CustomSourceDirectories>
     <BuildHost>
-      <HostName>192.168.23.254</HostName>
+      <HostName>192.168.56.128</HostName>
       <Transport>SSH</Transport>
       <UserName>hxd</UserName>
     </BuildHost>
     <MainSourceTransferCommand>
       <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
       <RemoteHost>
-        <HostName>192.168.23.254</HostName>
+        <HostName>192.168.56.128</HostName>
         <Transport>SSH</Transport>
         <UserName>hxd</UserName>
       </RemoteHost>
@@ -159,6 +159,7 @@
     <ShowMessageAfterExecuting>true</ShowMessageAfterExecuting>
   </CustomShortcuts>
   <UserDefinedVariables />
+  <ImportedPropertySheets />
   <CodeSense>
     <Enabled>Unknown</Enabled>
     <ExtraSettings>

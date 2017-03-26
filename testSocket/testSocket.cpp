@@ -4,8 +4,17 @@
 #include "Random.h"
 #include <signal.h>
 #include "socket_test.h"
+extern "C"
+{
+#include "lua.h"
+#include "lualib.h"
+#include "lauxlib.h"
+}
+
+#include "MySQL/MySqlWrapper.h"
 
 using namespace std;
+using namespace MySQL;
 
 int main(int argc, char *argv[])
 {
@@ -23,6 +32,8 @@ int main(int argc, char *argv[])
 	pCli->m_isNeedReConnectWhenLost = true;
 
 	gSockMgr->regist(pCli);
+
+	MySQL::Connection con;
 
 	while (1)
 	{
