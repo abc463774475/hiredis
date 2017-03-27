@@ -42,8 +42,6 @@ public:
 		memmove(m_data + m_nCurLength, pData, length);
 		m_nCurLength += length;
 	}
-
-	
 };
 
 struct	stSendBuff
