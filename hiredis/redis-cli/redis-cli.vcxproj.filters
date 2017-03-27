@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{743ba1ec-b7bc-4e2c-ba34-fd9b4dd95e81}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{e65c6e90-3683-4011-99b7-c33f0aa87609}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{a534d40e-629d-4044-8ab0-9a1cd22ecbb2}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Make files">
+      <UniqueIdentifier>{0d02b17c-a29d-42a1-93d8-500b10ee173a}</UniqueIdentifier>
+      <Extensions>*.mak</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{2841ca27-c4b3-424b-b9a6-8e6b1ca6eebb}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Makefile" />
+    <None Include="debug.mak">
+      <Filter>Make files</Filter>
+    </None>
+    <None Include="redis-cli-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="release.mak">
+      <Filter>Make files</Filter>
+    </None>
+    <None Include="redis-cli-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\hiredis\3.0\src\anet.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\hiredis\3.0\src\sds.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\hiredis\3.0\src\adlist.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\hiredis\3.0\src\redis-cli.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\hiredis\3.0\src\zmalloc.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\hiredis\3.0\src\release.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\hiredis\3.0\src\ae.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\hiredis\3.0\src\crc64.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\hiredis\3.0\deps\linenoise\linenoise.c">
+      <Filter>Source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

@@ -68,6 +68,9 @@
     <ClCompile Include="my_cluster.cpp" />
     <ClCompile Include="redisInstance_base.cpp" />
     <ClCompile Include="redisInstance_slave.cpp" />
+    <ClCompile Include="redis_Connect.cpp" />
+    <ClCompile Include="socket_cache.cpp" />
+    <ClCompile Include="socket_db.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="debug.mak" />
@@ -84,6 +87,9 @@
     <ClInclude Include="my_head.h" />
     <ClInclude Include="redisInstance_base.h" />
     <ClInclude Include="redisInstance_slave.h" />
+    <ClInclude Include="redis_Connect.h" />
+    <ClInclude Include="socket_cache.h" />
+    <ClInclude Include="socket_db.h" />
     <ClInclude Include="warning.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

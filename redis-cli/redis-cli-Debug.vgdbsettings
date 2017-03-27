@@ -98,9 +98,7 @@
   </Build>
   <Debug xsi:type="com.visualgdb.debug.remote">
     <AdditionalStartupCommands>
-      <GDBPreStartupCommands>
-        <string>set args --eval /home/hxd/redis/hxd.lua</string>
-      </GDBPreStartupCommands>
+      <GDBPreStartupCommands />
       <GDBStartupCommands />
     </AdditionalStartupCommands>
     <AdditionalGDBSettings>

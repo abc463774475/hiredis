@@ -237,8 +237,12 @@ bool CSocketCtrl_base::Connect( const char* lpszHostAddress, unsigned short nHos
 	}
 	
 	if (FD_ISSET(m_sockfd, &wset)) {
+		er1 = 0;
 		socklen_t len = sizeof(er1);
 		if (getsockopt(m_sockfd, SOL_SOCKET, SO_ERROR, &er1, &len) < 0 ) {
+			goto errEnd;
+		}
+		if ( er1 != 0){
 			goto errEnd;
 		}
 		return true;
@@ -505,7 +509,7 @@ void CSocketCtrl_base::pushRecvMsg(){
 	memmove(sBuf,m_recvMsg.m_data,m_recvMsg.m_nMsgLength);
 	
 	Msg*pMsg = (Msg*)sBuf;
-	//NLog->info("push msg is integrate  %d", pMsg->flag);
+	NLog->info("push msg is len  %d", pMsg->GetLength());
 	if (pMsg->flag == eMsgFlag_Intergrated){
 		m_recvDeque.push_back((Msg*)sBuf);
 	}
@@ -710,11 +714,23 @@ void CSocketCtrl_base::sendMsg(Msg *pMsg){
 	}
 }
 
+void CSocketCtrl_base::sendPack(WorkPacket &pack){
+	Msg_WorkPacket_Msg	msg;
+	Msg *pMsg = msg.Write(pack);
+
+	if (!pMsg){
+		return sendMsg(&msg);
+	}
+	else{
+		return sendMsg(pMsg);
+	}
+}
+
 void CSocketCtrl_base::processMsg(){
 	for ( auto it : m_recvDeque){
 		Msg *pMsg = it;
-		NLog->info("procMsgLen %d  dwType %d", pMsg->length, pMsg->dwType);
-		sendMsg(pMsg);
+		//NLog->info("procMsgLen %d  dwType %d", pMsg->length, pMsg->dwType);
+		//sendMsg(pMsg);
 		// proMsg
 		delete pMsg;
 	}

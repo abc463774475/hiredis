@@ -12,6 +12,9 @@
 #include <thread>
 #include <iostream>
 #include "socketMgr.h"
+#include "socket_db.h"
+#include "socket_cache.h"
+#include "redis_Connect.h"
 extern "C"
 {
 #include "lua.h"
@@ -117,12 +120,24 @@ void test2()
 void test3()
 {
 	gSockMgr = new SocketMgr;
-	CSocketCtrl_base *pCli = new CSocketCtrl_base;
-	pCli->m_ip = "192.168.23.254";
-	pCli->m_port = 20000;
-	pCli->m_sockType = CSocketCtrl_base::eSockeType::server;
+	{
+		gRedisCon = new Redis_connect;
+		gRedisCon->m_ip = "127.0.0.1";
+		gRedisCon->m_port = 6379;
 
-	gSockMgr->regist(pCli);
+		gRedisCon->init();
+	}
+	{
+		Socket_db *pCli = new Socket_db;
+		pCli->m_ip = "192.168.23.5";
+		pCli->m_port = 60001;
+		pCli->m_sockType = CSocketCtrl_base::eSockeType::cli;
+		pCli->m_isNeedReConnectWhenLost = true;
+
+		gSockDb = pCli;
+
+		gSockMgr->regist(pCli);
+	}
 	
 	while (1)
 	{

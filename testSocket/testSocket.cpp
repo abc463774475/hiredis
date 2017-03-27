@@ -4,6 +4,13 @@
 #include "Random.h"
 #include <signal.h>
 #include "socket_test.h"
+extern "C"
+{
+#include "lua.h"
+#include "lualib.h"
+#include "lauxlib.h"
+}
+
 
 using namespace std;
 

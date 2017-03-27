@@ -30,6 +30,9 @@
     <Filter Include="Header files\network">
       <UniqueIdentifier>{c3af52f9-46e5-417f-b3df-fff2274aad8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="socket">
+      <UniqueIdentifier>{a2dabe9b-ddbf-4dd7-bf31-12148854ad5b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="my_cluster.cpp">
@@ -52,6 +55,15 @@
     </ClCompile>
     <ClCompile Include="instancMgr_cli.cpp">
       <Filter>scriptMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="socket_cache.cpp">
+      <Filter>socket</Filter>
+    </ClCompile>
+    <ClCompile Include="socket_db.cpp">
+      <Filter>socket</Filter>
+    </ClCompile>
+    <ClCompile Include="redis_Connect.cpp">
+      <Filter>socket</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +105,15 @@
     </ClInclude>
     <ClInclude Include="instancMgr_cli.h">
       <Filter>scriptMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="socket_cache.h">
+      <Filter>socket</Filter>
+    </ClInclude>
+    <ClInclude Include="socket_db.h">
+      <Filter>socket</Filter>
+    </ClInclude>
+    <ClInclude Include="redis_Connect.h">
+      <Filter>socket</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

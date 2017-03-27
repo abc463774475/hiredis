@@ -56,4 +56,6 @@
 				centerliztion ? why it?  and how to do it  ?
 	2017-3-10
 				select  recvMsg and send test
+	2017-3-25
+				lack of the mysqlConnect   ok?  u are a middle component 
 ****************************************************/

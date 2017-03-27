@@ -58,7 +58,8 @@ public:
 	virtual	void	connectedDo();
 	
 	void			pushRecvTempMsg(Msg *pMsg);
-
+	
+	virtual void	sendPack(WorkPacket &pack);
 public:
 	SOCKET			m_sockfd;
     sockaddr_in     m_addr;
