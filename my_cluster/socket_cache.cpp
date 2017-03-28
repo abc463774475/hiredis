@@ -1,6 +1,7 @@
 #include "socket_cache.h"
 #include <stdlib.h>
 #include "socket_db.h"
+#include "redis_Connect.h"
 
 Socket_Cache* gCache = NULL;
 
@@ -28,21 +29,22 @@ void Socket_Cache::processMsg(){
 
 		switch (messageType)
 		{
-		case  10000:			// login
+		case  MSG_WS_REDIS_LOADPLAYERINFO:			// login
 		{
+			int hallId;
 			int  accountId;
-			pack >> accountId;
+			pack >> hallId >> accountId;
 			
-			
+			gRedisCon->loadPlayerInfo(hallId, accountId);
 		}
 		break;
-		case 10001:				// exit ok ?
+		case MSG_WS_REDIS_SAVEPLAYERINFO:				// exit ok ?
 		{
 			int accountId = 0;
 			string strMsg;
 			pack >> strMsg;
 			
-			addInfo(accountId, strMsg);
+			gRedisCon->addSelfCache(pack.GetAccountId(), strMsg);
 		}
 		break;
 		default:
@@ -60,21 +62,5 @@ void Socket_Cache::addInfo(int accountId, const string &str, bool isServerFirstL
 	}
 }
 
-void Socket_Cache::loadInfo(int accountId, const string &str, bool isServerFirstLoad /* = false */){
-	redisReply*reply = (redisReply*)redisCommand(m_context, "hget playerInfo %d", accountId);
-	string strBack(reply->str);
-	if (strBack == "nil"){
-		// needSendToDb handle
-		WorkPacket sendp(111);
-		gSockDb->sendPack(sendp);
-	}
-	else{
-		WorkPacket sendp(222);
-		sendPack(sendp);
-	}
-}
-
 void Socket_Cache::saveAllToDb(){
-	redisReply*reply = (redisReply*)redisCommand(m_context, "hgetall playerInfo");
-	// array load and 
 }

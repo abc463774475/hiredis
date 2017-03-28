@@ -138,6 +138,17 @@ void test3()
 
 		gSockMgr->regist(pCli);
 	}
+	{
+		Socket_Cache *pCli = new Socket_Cache;
+		pCli->m_ip = "192.168.23.254";
+		pCli->m_port = 40000;
+		pCli->m_sockType = CSocketCtrl_base::eSockeType::server;
+		pCli->m_isNeedReConnectWhenLost = true;
+
+		gCache = pCli;
+
+		gSockMgr->regist(pCli);
+	}
 	
 	while (1)
 	{

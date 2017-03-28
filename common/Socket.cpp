@@ -509,7 +509,7 @@ void CSocketCtrl_base::pushRecvMsg(){
 	memmove(sBuf,m_recvMsg.m_data,m_recvMsg.m_nMsgLength);
 	
 	Msg*pMsg = (Msg*)sBuf;
-	NLog->info("push msg is len  %d", pMsg->GetLength());
+	//NLog->info("push msg is len  %d", pMsg->GetLength());
 	if (pMsg->flag == eMsgFlag_Intergrated){
 		m_recvDeque.push_back((Msg*)sBuf);
 	}

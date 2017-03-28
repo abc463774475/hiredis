@@ -49,7 +49,7 @@ Logger::Logger (const char *strLoggerName)
 //   	_isWriteAtOnce = true ;
 //   	_writeType = eWriteType_Common;
 
- 	_isWriteAtOnce = true ;
+ 	_isWriteAtOnce = false ;
 	_writeType = eWriteType_Common ;
 
  	//_writeType = eWriteType_OnlyErro;

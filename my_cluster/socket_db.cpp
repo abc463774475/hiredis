@@ -15,9 +15,9 @@ void Socket_db::connectedDo(){
 	if (m_isServerStartLoadFinish){
 		return;
 	}
- 	WorkPacket pack(MSG_REDIS_2_DB_ALLPLAYERINFO);
- 	//sendPack(pack);
-	saveRedisToDb();
+	WorkPacket pack(MSG_REDIS_2_DB_ALLPLAYERINFO);
+	sendPack(pack);
+	//saveRedisToDb();
 }
 
 void Socket_db::sendPack(WorkPacket &pack){
@@ -77,13 +77,18 @@ void Socket_db::handle_dbCache(WorkPacket &pack){
 // 	}
 // 	NLog->info("totalSize  %d", size);
 // 	m_isServerStartLoadFinish = true;
+	int hallId;
 	int acountId = 0;
 	string strCache;
-	pack >> acountId >> strCache;
-	
-	redisReply *reply = (redisReply*)redisCommand(gRedisCon->m_context,"hset playerInfo %d %s",acountId, strCache.c_str());
-	if ( reply->integer != 1){
-		NLog->error("redis hset erro");
+	pack >> hallId >> acountId >> strCache;
+
+	gRedisCon->addSelfCache(acountId, strCache);
+
+	if (hallId != -1){
+		// sendTodb
+		WorkPacket sendPack(MSG_REDIS_WS_LOADPLAYERINFO);
+		sendPack << hallId << acountId << strCache;
+		gCache->sendPack(sendPack);
 	}
 }
 
@@ -93,20 +98,7 @@ void Socket_db::handle_dbLoadFinish(WorkPacket &pack){
 }
 
 void Socket_db::saveRedisToDb(){
-// 	char *sz[2] = { "hgetall", "playerInfo" };
-// 	size_t len[2] = { 7,10 };
-// 	int  i = redisAppendCommandArgv(gRedisCon->m_context, 2, (const char**)sz, len);
-// 	void *_reply;
-// 	redisReply *reply;
-// 	redisGetReply(gRedisCon->m_context, &_reply);
-// 
-// 	reply = (redisReply*)_reply;
-// 	NLog->info("type  %d  len %ld", reply->type, (long)reply->elements);
-// 	redisReply *reply = (redisReply*)redisCommand(gRedisCon->m_context, "hget hxd h");
-// 	NLog->info("type  %d  len %ld", reply->type, (long)reply->elements);
-// 
-// 	freeReplyObject(reply);
-	gRedisCon->fun1();
+	gRedisCon->saveAllCacheToDb();
 }
 
 void Socket_db::handle_dbSavePlayerInfo(int accountId, const string &str){

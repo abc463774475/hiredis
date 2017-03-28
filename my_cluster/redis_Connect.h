@@ -27,7 +27,9 @@ public:
 public:
 	void init();
 
-	void fun1();
+	void saveAllCacheToDb();
+	void addSelfCache(int accountId, const string &str);
+	void loadPlayerInfo(int hallId, int accountId);
 };
 
 extern Redis_connect* gRedisCon;
