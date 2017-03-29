@@ -13,8 +13,10 @@
 #include <iostream>
 #include "socketMgr.h"
 #include "socket_db.h"
-#include "socket_cache.h"
+#include "Socket_CacheListen.h"
 #include "redis_Connect.h"
+#include <ctype.h>
+#include <algorithm>
 extern "C"
 {
 #include "lua.h"
@@ -117,6 +119,14 @@ void test2()
 	}
 }
 
+void socket_run(){
+	while (1)
+	{
+		gSockMgr->run();
+		usleep(1000);
+	}
+}
+
 void test3()
 {
 	gSockMgr = new SocketMgr;
@@ -139,20 +149,25 @@ void test3()
 		gSockMgr->regist(pCli);
 	}
 	{
-		Socket_Cache *pCli = new Socket_Cache;
+		Socket_CacheListen *pCli = new Socket_CacheListen;
 		pCli->m_ip = "192.168.23.254";
 		pCli->m_port = 40000;
 		pCli->m_sockType = CSocketCtrl_base::eSockeType::server;
 		pCli->m_isNeedReConnectWhenLost = true;
 
-		gCache = pCli;
-
 		gSockMgr->regist(pCli);
 	}
 	
-	while (1)
-	{
-		gSockMgr->run();
-		usleep(1000);
+	std::thread t1(socket_run);
+	t1.detach();
+
+	while (1){
+		string str;
+		getline(cin, str);
+		
+		transform(str.begin(), str.end(), str.begin(), (int(*)(int))toupper);
+		if ( str == "SAVEINFO"){
+
+		}
 	}
 }

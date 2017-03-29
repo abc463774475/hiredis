@@ -35,7 +35,7 @@ error:
 	$(error Invalid configuration, please check your inputs)
 endif
 
-SOURCEFILES := instancMgr_base.cpp instancMgr_cli.cpp instancMgr_slaveAndMaster.cpp instance_cli.cpp my_cluster.cpp redisInstance_base.cpp redisInstance_slave.cpp redis_Connect.cpp socket_cache.cpp socket_db.cpp
+SOURCEFILES := instancMgr_base.cpp instancMgr_cli.cpp instancMgr_slaveAndMaster.cpp instance_cli.cpp my_cluster.cpp redisInstance_base.cpp redisInstance_slave.cpp redis_Connect.cpp Socket_CacheListen.cpp socket_db.cpp
 EXTERNAL_LIBS := ../common/$(BINARYDIR)/common.a ../hiredis/$(BINARYDIR)/libhiredis.a ../lib_ea/$(BINARYDIR)/lib_ea.a
 EXTERNAL_LIBS_COPIED := $(foreach lib, $(EXTERNAL_LIBS),$(BINARYDIR)/$(notdir $(lib)))
 

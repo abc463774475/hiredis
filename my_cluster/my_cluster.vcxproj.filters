@@ -56,13 +56,13 @@
     <ClCompile Include="instancMgr_cli.cpp">
       <Filter>scriptMgr</Filter>
     </ClCompile>
-    <ClCompile Include="socket_cache.cpp">
-      <Filter>socket</Filter>
-    </ClCompile>
     <ClCompile Include="socket_db.cpp">
       <Filter>socket</Filter>
     </ClCompile>
     <ClCompile Include="redis_Connect.cpp">
+      <Filter>socket</Filter>
+    </ClCompile>
+    <ClCompile Include="Socket_CacheListen.cpp">
       <Filter>socket</Filter>
     </ClCompile>
   </ItemGroup>
@@ -106,13 +106,13 @@
     <ClInclude Include="instancMgr_cli.h">
       <Filter>scriptMgr</Filter>
     </ClInclude>
-    <ClInclude Include="socket_cache.h">
-      <Filter>socket</Filter>
-    </ClInclude>
     <ClInclude Include="socket_db.h">
       <Filter>socket</Filter>
     </ClInclude>
     <ClInclude Include="redis_Connect.h">
+      <Filter>socket</Filter>
+    </ClInclude>
+    <ClInclude Include="Socket_CacheListen.h">
       <Filter>socket</Filter>
     </ClInclude>
   </ItemGroup>

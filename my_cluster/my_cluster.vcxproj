@@ -69,7 +69,7 @@
     <ClCompile Include="redisInstance_base.cpp" />
     <ClCompile Include="redisInstance_slave.cpp" />
     <ClCompile Include="redis_Connect.cpp" />
-    <ClCompile Include="socket_cache.cpp" />
+    <ClCompile Include="Socket_CacheListen.cpp" />
     <ClCompile Include="socket_db.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -88,7 +88,7 @@
     <ClInclude Include="redisInstance_base.h" />
     <ClInclude Include="redisInstance_slave.h" />
     <ClInclude Include="redis_Connect.h" />
-    <ClInclude Include="socket_cache.h" />
+    <ClInclude Include="Socket_CacheListen.h" />
     <ClInclude Include="socket_db.h" />
     <ClInclude Include="warning.h" />
   </ItemGroup>

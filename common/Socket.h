@@ -47,7 +47,8 @@ public:
     uint16_t        GetRemotePort ();
 	
 	virtual void	run();
-	void			accept_node();
+	virtual void	accept_node();
+	virtual CSocketCtrl_base*	getNewAcceptNode();
 	
 	bool			tryRecv();
 	virtual void	processMsg();

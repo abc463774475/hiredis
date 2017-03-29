@@ -392,8 +392,7 @@ void CSocketCtrl_base::run()
 	}
 }
 
-void CSocketCtrl_base::accept_node()
-{
+void CSocketCtrl_base::accept_node(){
 	sockaddr_in addr;
 	socklen_t len = sizeof (addr);
 	int sockfd = accept(m_sockfd, (sockaddr *)&addr, &len);
@@ -403,13 +402,19 @@ void CSocketCtrl_base::accept_node()
 		return;
 	}
 
-	CSocketCtrl_base *pBase = new CSocketCtrl_base;
+	NLog->info("recv a sockd  %d",sockfd);
+
+	CSocketCtrl_base *pBase = getNewAcceptNode();
 	pBase->setSockType(eSockeType::cli);
 	pBase->GetSockfd() = sockfd;
 	pBase->m_isConnect = true;
 	
 	pBase->SetDefaultOpt();
 	gSockMgr->regist(pBase);
+}
+
+CSocketCtrl_base* CSocketCtrl_base::getNewAcceptNode(){
+	return new CSocketCtrl_base;
 }
 
 bool CSocketCtrl_base::tryRecv()
@@ -509,7 +514,7 @@ void CSocketCtrl_base::pushRecvMsg(){
 	memmove(sBuf,m_recvMsg.m_data,m_recvMsg.m_nMsgLength);
 	
 	Msg*pMsg = (Msg*)sBuf;
-	//NLog->info("push msg is len  %d", pMsg->GetLength());
+	NLog->info("push msg is len  %d", pMsg->GetLength());
 	if (pMsg->flag == eMsgFlag_Intergrated){
 		m_recvDeque.push_back((Msg*)sBuf);
 	}
@@ -729,9 +734,6 @@ void CSocketCtrl_base::sendPack(WorkPacket &pack){
 void CSocketCtrl_base::processMsg(){
 	for ( auto it : m_recvDeque){
 		Msg *pMsg = it;
-		//NLog->info("procMsgLen %d  dwType %d", pMsg->length, pMsg->dwType);
-		//sendMsg(pMsg);
-		// proMsg
 		delete pMsg;
 	}
 

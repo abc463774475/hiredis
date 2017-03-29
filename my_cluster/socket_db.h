@@ -19,7 +19,10 @@ public:
 	void			handle_dbSavePlayerInfo(int accountId, const string &str);
 
 	void			saveRedisToDb();
-private:
+
+	void			handle_quit();
+	void			sendQuit();
+public:
 	bool			m_isServerStartLoadFinish;
 };
 

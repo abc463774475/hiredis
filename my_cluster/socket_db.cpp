@@ -1,6 +1,7 @@
 #include "socket_db.h"
-#include "socket_cache.h"
+#include "Socket_CacheListen.h"
 #include "redis_Connect.h"
+#include <stdlib.h>
 Socket_db* gSockDb = NULL;
 Socket_db::Socket_db(){
 	m_isServerStartLoadFinish = false;
@@ -17,7 +18,6 @@ void Socket_db::connectedDo(){
 	}
 	WorkPacket pack(MSG_REDIS_2_DB_ALLPLAYERINFO);
 	sendPack(pack);
-	//saveRedisToDb();
 }
 
 void Socket_db::sendPack(WorkPacket &pack){
@@ -56,6 +56,14 @@ void Socket_db::processMsg(){
 				handle_dbLoadFinish(pack);
 			}
 			break;
+		case MSG_DB_REDIS_QUIT:
+			{
+				handle_quit();
+			}
+			break;
+		default:
+			NLog->error("not handle msg %d", messageType);
+			break;
 		}
 
 		delete pMsg;
@@ -65,18 +73,6 @@ void Socket_db::processMsg(){
 }
 
 void Socket_db::handle_dbCache(WorkPacket &pack){
-// 	int size = 0;
-// 	pack >> size;
-// 	for (int i = 0; i < size; ++i){
-// 		int acountId = 0;
-// 		string strCache;
-// 		pack >> acountId >> strCache;
-// 		
-// 		//gCache->addInfo(acountId, strCache);
-// 		NLog->info("curPlayerAcId  %d", acountId);
-// 	}
-// 	NLog->info("totalSize  %d", size);
-// 	m_isServerStartLoadFinish = true;
 	int hallId;
 	int acountId = 0;
 	string strCache;
@@ -104,5 +100,15 @@ void Socket_db::saveRedisToDb(){
 void Socket_db::handle_dbSavePlayerInfo(int accountId, const string &str){
 	WorkPacket pack(MSG_REDIS_2_DB_SAVEPLAYERINFO);
 	pack << accountId << str;
+	sendPack(pack);
+}
+
+void Socket_db::handle_quit(){
+	NLog->info("exit now ");
+	exit(1);
+}
+
+void Socket_db::sendQuit(){
+	WorkPacket pack(MSG_REDIS_DB_QUIT);
 	sendPack(pack);
 }

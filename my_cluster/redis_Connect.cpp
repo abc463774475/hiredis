@@ -1,7 +1,7 @@
 #include "redis_Connect.h"
 #include "my_head.h"
 #include "socket_db.h"
-#include "socket_cache.h"
+#include "Socket_CacheListen.h"
 
 Redis_connect* gRedisCon = NULL;
 
@@ -27,7 +27,10 @@ void Redis_connect::addSelfCache(int accountId, const string &str){
 	if (!reply || reply->type == REDIS_REPLY_ERROR){
 		NLog->error("%s   reply %p",__FUNCTION__, reply);
 	}
-	// if need saveToDb  to disk save ?  later do it 
+	// if need saveToDb  to disk save ?  later do it
+	if (0){
+		gSockDb->handle_dbSavePlayerInfo(accountId, str);
+	}
 }
 
 void Redis_connect::saveAllCacheToDb(){
@@ -44,6 +47,9 @@ void Redis_connect::saveAllCacheToDb(){
 		gSockDb->handle_dbSavePlayerInfo(accountId, strMsg);
 	}
 	freeReplyObject(reply);
+
+	// sendQuit
+	gSockDb->sendQuit();
 }
 
 void Redis_connect::loadPlayerInfo(int hallId, int accountId){
@@ -52,11 +58,14 @@ void Redis_connect::loadPlayerInfo(int hallId, int accountId){
 
 	}
 
-	string strBack(reply->str);
-	if (strBack == "nil" || strBack.size() == 0){
+	string strBack;
+	if (reply->str){
+		strBack = reply->str;
+	}
+	if ( strBack == "nil" || strBack.size() == 0){
 		// needSendToDb
 		WorkPacket pack(MSG_REDIS_DB_LOADONEPLAYERINFO);
-		pack << accountId;
+		pack << hallId<<accountId;
 		gSockDb->sendPack(pack);
 		return;
 	}
